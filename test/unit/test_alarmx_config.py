@@ -6,15 +6,15 @@ os.environ['SENTINEL_CONFIG'] = os.path.normpath(os.path.join(os.path.dirname(__
 os.environ['SENTINEL_ENV'] = 'test'
 sys.path.append(os.path.normpath(os.path.join(os.path.dirname(__file__), '../../lib')))
 import config
-from dash_config import DashConfig
+from alarmx_config import AlarmxConfig
 
 
 @pytest.fixture
-def dash_conf(**kwargs):
+def alarmx_conf(**kwargs):
     defaults = {
-        'rpcuser': 'dashrpc',
+        'rpcuser': 'alarmxrpc',
         'rpcpassword': 'EwJeV3fZTyTVozdECF627BkBMnNDwQaVLakG3A4wXYyk',
-        'rpcport': 29241,
+        'rpcport': 12579,
     }
 
     # merge kwargs into defaults
@@ -34,35 +34,35 @@ rpcport={rpcport}
 
 
 def test_get_rpc_creds():
-    dash_config = dash_conf()
-    creds = DashConfig.get_rpc_creds(dash_config, 'testnet')
+    alarmx_config = alarmx_conf()
+    creds = AlarmxConfig.get_rpc_creds(alarmx_config, 'testnet')
 
     for key in ('user', 'password', 'port'):
         assert key in creds
-    assert creds.get('user') == 'dashrpc'
+    assert creds.get('user') == 'alarmxrpc'
     assert creds.get('password') == 'EwJeV3fZTyTVozdECF627BkBMnNDwQaVLakG3A4wXYyk'
-    assert creds.get('port') == 29241
+    assert creds.get('port') == 12579
 
-    dash_config = dash_conf(rpcpassword='s00pers33kr1t', rpcport=8000)
-    creds = DashConfig.get_rpc_creds(dash_config, 'testnet')
+    alarmx_config = alarmx_conf(rpcpassword='s00pers33kr1t', rpcport=8000)
+    creds = AlarmxConfig.get_rpc_creds(alarmx_config, 'testnet')
 
     for key in ('user', 'password', 'port'):
         assert key in creds
-    assert creds.get('user') == 'dashrpc'
+    assert creds.get('user') == 'alarmxrpc'
     assert creds.get('password') == 's00pers33kr1t'
     assert creds.get('port') == 8000
 
-    no_port_specified = re.sub('\nrpcport=.*?\n', '\n', dash_conf(), re.M)
-    creds = DashConfig.get_rpc_creds(no_port_specified, 'testnet')
+    no_port_specified = re.sub('\nrpcport=.*?\n', '\n', alarmx_conf(), re.M)
+    creds = AlarmxConfig.get_rpc_creds(no_port_specified, 'testnet')
 
     for key in ('user', 'password', 'port'):
         assert key in creds
-    assert creds.get('user') == 'dashrpc'
+    assert creds.get('user') == 'alarmxrpc'
     assert creds.get('password') == 'EwJeV3fZTyTVozdECF627BkBMnNDwQaVLakG3A4wXYyk'
-    assert creds.get('port') == 19998
+    assert creds.get('port') == 93579
 
 
-# ensure dash network (mainnet, testnet) matches that specified in config
-# requires running dashd on whatever port specified...
+# ensure alarmx network (mainnet, testnet) matches that specified in config
+# requires running alarmxd on whatever port specified...
 #
-# This is more of a dashd/jsonrpc test than a config test...
+# This is more of a alarmxd/jsonrpc test than a config test...

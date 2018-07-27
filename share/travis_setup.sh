@@ -1,9 +1,9 @@
 #!/bin/bash
 set -evx
 
-mkdir ~/.dashcore
+mkdir ~/.alarmxcore
 
 # safety check
-if [ ! -f ~/.dashcore/.dash.conf ]; then
-  cp share/dash.conf.example ~/.dashcore/dash.conf
+if [ ! -f ~/.alarmxcore/.alarmx.conf ]; then
+  cp share/alarmx.conf.example ~/.alarmxcore/alarmx.conf
 fi

@@ -1,12 +1,12 @@
-# Dash Sentinel
+# Alarmx Sentinel
 
-An all-powerful toolset for Dash.
+An all-powerful toolset for Alarmx.
 
-[![Build Status](https://travis-ci.org/dashpay/sentinel.svg?branch=master)](https://travis-ci.org/dashpay/sentinel)
+[![Build Status](https://travis-ci.org/alarmxcore/sentinel.svg?branch=master)](https://travis-ci.org/alarmxcore/sentinel)
 
-Sentinel is an autonomous agent for persisting, processing and automating Dash governance objects and tasks, and for expanded functions in the upcoming Dash V13 release (Evolution).
+Sentinel is an autonomous agent for persisting, processing and automating Alarmx governance objects and tasks, and for expanded functions in the upcoming Alarmx V13 release (Evolution).
 
-Sentinel is implemented as a Python application that binds to a local version 12 dashd instance on each Dash Masternode.
+Sentinel is implemented as a Python application that binds to a local version 12 alarmxd instance on each Alarmx Masternode.
 
 This guide covers installing Sentinel onto an existing Masternode in Ubuntu 14.04 / 16.04.
 
@@ -23,15 +23,15 @@ Update system packages and ensure virtualenv is installed:
     $ sudo apt-get update
     $ sudo apt-get -y install python-virtualenv
 
-Make sure the local Dash daemon running is at least version 12.1 (120100)
+Make sure the local Alarmx daemon running is at least version 12.1 (120100)
 
-    $ dash-cli getinfo | grep version
+    $ alarmx-cli getinfo | grep version
 
 ### 2. Install Sentinel
 
 Clone the Sentinel repo and install Python dependencies.
 
-    $ git clone https://github.com/dashpay/sentinel.git && cd sentinel
+    $ git clone https://github.com/alarmxcore/sentinel.git && cd sentinel
     $ virtualenv ./venv
     $ ./venv/bin/pip install -r requirements.txt
 
@@ -51,13 +51,13 @@ Test the config by running all tests from the sentinel folder you cloned into
 
     $ ./venv/bin/py.test ./test
 
-With all tests passing and crontab setup, Sentinel will stay in sync with dashd and the installation is complete
+With all tests passing and crontab setup, Sentinel will stay in sync with alarmxd and the installation is complete
 
 ## Configuration
 
-An alternative (non-default) path to the `dash.conf` file can be specified in `sentinel.conf`:
+An alternative (non-default) path to the `alarmx.conf` file can be specified in `sentinel.conf`:
 
-    dash_conf=/path/to/dash.conf
+    alarmx_conf=/path/to/alarmx.conf
 
 ## Troubleshooting
 
@@ -67,11 +67,11 @@ To view debug output, set the `SENTINEL_DEBUG` environment variable to anything 
 
 ## Contributing
 
-Please follow the [DashCore guidelines for contributing](https://github.com/dashpay/dash/blob/master/CONTRIBUTING.md).
+Please follow the [AlarmxCore guidelines for contributing](https://github.com/alarmxcore/alarmx/blob/master/CONTRIBUTING.md).
 
 Specifically:
 
-* [Contributor Workflow](https://github.com/dashpay/dash/blob/master/CONTRIBUTING.md#contributor-workflow)
+* [Contributor Workflow](https://github.com/alarmxcore/alarmx/blob/master/CONTRIBUTING.md#contributor-workflow)
 
     To contribute a patch, the workflow is as follows:
 
@@ -85,4 +85,4 @@ Specifically:
 
 ### License
 
-Released under the MIT license, under the same terms as DashCore itself. See [LICENSE](LICENSE) for more info.
+Released under the MIT license, under the same terms as AlarmxCore itself. See [LICENSE](LICENSE) for more info.

@@ -3,30 +3,30 @@
 """
 import sys
 import os
-from dash_config import DashConfig
+from alarmx_config import AlarmxConfig
 
 default_sentinel_config = os.path.normpath(
     os.path.join(os.path.dirname(__file__), '../sentinel.conf')
 )
 sentinel_config_file = os.environ.get('SENTINEL_CONFIG', default_sentinel_config)
-sentinel_cfg = DashConfig.tokenize(sentinel_config_file)
+sentinel_cfg = AlarmxConfig.tokenize(sentinel_config_file)
 sentinel_version = "1.2.0"
-min_dashd_proto_version_with_sentinel_ping = 70207
+min_alarmxd_proto_version_with_sentinel_ping = 70207
 
 
-def get_dash_conf():
+def get_alarmx_conf():
     if sys.platform == 'win32':
-        dash_conf = os.path.join(os.getenv('APPDATA'), "DashCore/dash.conf")
+        alarmx_conf = os.path.join(os.getenv('APPDATA'), "AlarmxCore/alarmx.conf")
     else:
         home = os.environ.get('HOME')
 
-        dash_conf = os.path.join(home, ".dashcore/dash.conf")
+        alarmx_conf = os.path.join(home, ".alarmxcore/alarmx.conf")
         if sys.platform == 'darwin':
-            dash_conf = os.path.join(home, "Library/Application Support/DashCore/dash.conf")
+            alarmx_conf = os.path.join(home, "Library/Application Support/AlarmxCore/alarmx.conf")
 
-    dash_conf = sentinel_cfg.get('dash_conf', dash_conf)
+    alarmx_conf = sentinel_cfg.get('alarmx_conf', alarmx_conf)
 
-    return dash_conf
+    return alarmx_conf
 
 
 def get_network():
@@ -86,7 +86,7 @@ def get_db_conn():
     return db
 
 
-dash_conf = get_dash_conf()
+alarmx_conf = get_alarmx_conf()
 network = get_network()
 rpc_host = get_rpchost()
 db = get_db_conn()
